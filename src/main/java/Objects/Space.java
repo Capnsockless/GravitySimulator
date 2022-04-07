@@ -9,10 +9,9 @@ public class Space {
 
     static public List<GameObject> Instances = new ArrayList();
     static public double GravConstant = 1;
-    static public int FPS = 30;
 
     //Will be run each step to have every object take a step
-    public void runStep(){
+    public synchronized void runStep(){
         for (GameObject obj : Instances) {
             obj.stepEvent();
         }

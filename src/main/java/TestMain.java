@@ -1,6 +1,4 @@
-import Utility.MetaObject;
-import Utility.MomentumDir;
-import Utility.MomentumXY;
+import Utility.GUI;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -21,11 +19,11 @@ public class TestMain {
         System.out.println(vec2.getY());
         */
 
-        MetaObject GameObj = new MetaObject();
+        GUI GameObj = new GUI();
 
 
 
-        try (var inputStream = MetaObject.class.getResourceAsStream("/config.properties")) {
+        try (var inputStream = GUI.class.getResourceAsStream("/config.properties")) {
             if (inputStream != null) {
                 // Reading properties
                 var props = new Properties();
