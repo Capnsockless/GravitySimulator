@@ -10,6 +10,6 @@ public class Launcher {
         spaceThread.setDaemon(true);
         spaceThread.setPriority(MAX_PRIORITY*3/4);
 
-
+        spaceThread.run();
     }
 }

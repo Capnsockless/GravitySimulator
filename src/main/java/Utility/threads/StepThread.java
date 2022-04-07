@@ -9,7 +9,7 @@ public class StepThread extends Thread{
 
     @Override
     public void run(){
-        //Engine loop, 30fps
+        //Engine loop
         while (!userInterface.end) {
             if (!userInterface.pause) activeSpace.runStep();
 
