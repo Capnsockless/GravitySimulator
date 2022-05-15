@@ -13,8 +13,9 @@ import java.util.Random;
 public abstract class GameObject {
     int instanceID;
 
-    double x, y;
-    double radius;
+    protected double x;
+    protected double y;
+    protected double radius;
 
     public GameObject(double x, double y, double radius){
         this.x = x;
@@ -33,6 +34,9 @@ public abstract class GameObject {
         return newID;
     }
 
+    //"Destroys" the planet
+    public abstract void Implode();
+
     public void stepEvent(){ }
 
     public double pointDistance(double _x, double _y){
@@ -41,5 +45,18 @@ public abstract class GameObject {
 
     public double pointDirection(double _x, double _y){
         return Math.atan2(_y-y, _x-x);
+    }
+
+    //"Destroys" the object
+    public void implode(){
+        x = -300;
+        y = -300;
+        radius = 0;
+
+        try {
+            finalize();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
     }
 }

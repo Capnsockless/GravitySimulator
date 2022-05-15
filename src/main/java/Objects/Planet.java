@@ -5,10 +5,13 @@ import Utility.MomentumDir;
 import Utility.MomentumXY;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 @Getter
 @Setter
 public class Planet extends GameObject {
+    private static final Logger logger = (Logger) LogManager.getLogger(Planet.class);
 
     public double mass;
     private MomentumXY currMomentum = new MomentumXY(0, 0);
@@ -16,6 +19,7 @@ public class Planet extends GameObject {
     public Planet(double x, double y, double radius) {
         super(x, y, radius);
         this.mass = radius*radius*Math.PI;
+        logger.info("New Planet was created. ID:{}", getInstanceID());
     }
 
     //Calculates a = G*(m1+m2)/R1+R2 and multiplies the MomentumDir object to the value
@@ -28,6 +32,21 @@ public class Planet extends GameObject {
         return rawDirection;
     }
 
+    //"Destroys" the planet
+    @Override
+    public void Implode(){
+        logger.info("Planet ID:{} has imploded", getInstanceID());
+        x = -300;
+        y = -300;
+        radius = 0;
+        mass = 0;
+
+        try {
+            finalize();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void stepEvent() {

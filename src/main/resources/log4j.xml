@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="GravSim" packages="">
+    <Appenders>
+        <File name="LogFile" fileName="logs/gravSimulator.log">
+            <PatternLayout>
+                <Pattern>[%p] %d %c %M - %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="error">
+            <AppenderRef ref="Async"/>
+        </Root>
+    </Loggers>
+</Configuration>
