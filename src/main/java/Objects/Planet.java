@@ -34,18 +34,12 @@ public class Planet extends GameObject {
 
     //"Destroys" the planet
     @Override
-    public void Implode(){
+    public void implode(){
         logger.info("Planet ID:{} has imploded", getInstanceID());
         x = -300;
         y = -300;
         radius = 0;
         mass = 0;
-
-        try {
-            finalize();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

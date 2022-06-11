@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="914.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Utility.UI.AppController">
+
+    <Canvas id="spaceBoard" height="493.0" layoutX="16.0" layoutY="78.0" styleClass="Canvas" width="885.0" />
+    <ToggleButton layoutX="34.0" layoutY="28.0" mnemonicParsing="false" onAction="#onPause" prefHeight="34.0" prefWidth="67.0" styleClass="Button" text="Pause" />
+    <Slider layoutX="135.0" layoutY="31.0" prefHeight="28.0" prefWidth="206.0" styleClass="Slider" />
+   <Button layoutX="549.0" layoutY="14.0" mnemonicParsing="false" onAction="#onEnd" prefHeight="25.0" prefWidth="36.0" styleClass="Button" text="End" />
+
+    <padding>
+        <Insets top="20.0" />
+    </padding>
+</Pane>

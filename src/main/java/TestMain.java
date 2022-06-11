@@ -1,4 +1,4 @@
-import Utility.GUI;
+import Objects.Space;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -19,11 +19,8 @@ public class TestMain {
         System.out.println(vec2.getY());
         */
 
-        GUI GameObj = new GUI();
 
-
-
-        try (var inputStream = GUI.class.getResourceAsStream("/config.properties")) {
+        try (var inputStream = Space.class.getResourceAsStream("/config.properties")) {
             if (inputStream != null) {
                 // Reading properties
                 var props = new Properties();

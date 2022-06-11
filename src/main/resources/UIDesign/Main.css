@@ -1,0 +1,16 @@
+#mainPane {
+    -fx-background-color: #163D57;
+}
+
+.Button {
+    -fx-background-color: #22717B;
+    -fx-text-fill: White;
+}
+
+#spaceBoard{
+    -fx-background-color: #000000;
+}
+
+.Slider{
+
+}

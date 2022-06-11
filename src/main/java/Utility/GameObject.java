@@ -34,9 +34,6 @@ public abstract class GameObject {
         return newID;
     }
 
-    //"Destroys" the planet
-    public abstract void Implode();
-
     public void stepEvent(){ }
 
     public double pointDistance(double _x, double _y){
@@ -52,11 +49,5 @@ public abstract class GameObject {
         x = -300;
         y = -300;
         radius = 0;
-
-        try {
-            finalize();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
     }
 }
