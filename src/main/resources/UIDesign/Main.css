@@ -1,16 +1,28 @@
 #mainPane {
-    -fx-background-color: #163D57;
+    -fx-background-color: #030E2F;
+}
+
+#canvasPane {
+    -fx-border-color: #1C14B1;
+    -fx-border-width: 5px;
+    -fx-background-color: #000207;
 }
 
 .Button {
-    -fx-background-color: #22717B;
+    -fx-background-color: #7639BE;
     -fx-text-fill: White;
 }
 
-#spaceBoard{
-    -fx-background-color: #000000;
+.Button:pressed {
+    -fx-background-color: #9E70D4;
 }
 
 .Slider{
+    -fx-control-inner-background: #7639BE;
+    -fx-show-tick-labels: true;
+    -fx-show-tick-marks: true;
+}
 
+.ChoiceBox{
+    -fx-background-color: #7639BE;
 }

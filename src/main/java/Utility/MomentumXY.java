@@ -25,4 +25,12 @@ public class MomentumXY {
     }
 
     public void SumMomentum(MomentumXY mXY){ this.x += mXY.getX(); this.y += mXY.getY();}
+
+    @Override
+    public String toString() {
+        return "MomentumXY{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

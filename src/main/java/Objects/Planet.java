@@ -3,6 +3,7 @@ package Objects;
 import Utility.GameObject;
 import Utility.MomentumDir;
 import Utility.MomentumXY;
+import javafx.scene.paint.Color;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +20,7 @@ public class Planet extends GameObject {
     public Planet(double x, double y, double radius) {
         super(x, y, radius);
         this.mass = radius*radius*Math.PI;
+
         logger.info("New Planet was created. ID:{}", getInstanceID());
     }
 
@@ -29,6 +31,7 @@ public class Planet extends GameObject {
 
         MomentumDir rawDirection = new MomentumDir(pointDirection(otherplanet.getX(), otherplanet.getY()), distance);
         rawDirection.MultiplyDistance(force);
+
         return rawDirection;
     }
 
@@ -40,23 +43,26 @@ public class Planet extends GameObject {
         y = -300;
         radius = 0;
         mass = 0;
+        currMomentum = new MomentumXY(0, 0);
     }
 
     @Override
-    public void stepEvent() {
+    public synchronized void stepEvent() {
         super.stepEvent();
 
+        x += currMomentum.getX();
+        y += currMomentum.getY();
+
         for (GameObject obj: Space.Instances) {
-            if (obj instanceof Planet && this != obj) {
+            if (obj instanceof Planet && getInstanceID() != obj.getInstanceID()) {
                 //Add momentum from each gravitational force
                 MomentumDir mDir = calculateMomentumDir((Planet) obj);
                 currMomentum.SumMomentum(mDir.ToMomentumXY());
-
-                //Collision
-                if (pointDistance(obj.getX(), obj.getY()) <= (getRadius() + obj.getRadius())){
-
-                }
             }
         }
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

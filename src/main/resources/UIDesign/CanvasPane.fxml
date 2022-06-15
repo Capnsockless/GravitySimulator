@@ -3,14 +3,24 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 
 <Pane id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="914.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Utility.UI.AppController">
+    <Slider id="sizeSlider" layoutX="313.0" layoutY="31.0" prefHeight="43.0" prefWidth="191.0" styleClass="Slider" />
+   <Button id="endBtn" layoutX="803.0" layoutY="14.0" mnemonicParsing="false" onAction="#onEnd" prefHeight="25.0" prefWidth="99.0" styleClass="Button" text="End" />
+   <ChoiceBox id="langSelect" layoutX="621.0" layoutY="16.0" onInputMethodTextChanged="#onLanguageChange" onMouseReleased="#onLanguageChange" prefHeight="25.0" prefWidth="150.0" styleClass="ChoiceBox" />
+   <Button id="pauseBtn" layoutX="27.0" layoutY="25.0" mnemonicParsing="false" onAction="#onPause" prefHeight="45.0" prefWidth="88.0" styleClass="Button" text="Pause" />
+   <Pane id="canvasPane" layoutX="8.0" layoutY="77.0" prefHeight="499.0" prefWidth="898.0">
+      <children>
 
-    <Canvas id="spaceBoard" height="493.0" layoutX="16.0" layoutY="78.0" styleClass="Canvas" width="885.0" />
-    <ToggleButton layoutX="34.0" layoutY="28.0" mnemonicParsing="false" onAction="#onPause" prefHeight="34.0" prefWidth="67.0" styleClass="Button" text="Pause" />
-    <Slider layoutX="135.0" layoutY="31.0" prefHeight="28.0" prefWidth="206.0" styleClass="Slider" />
-   <Button layoutX="549.0" layoutY="14.0" mnemonicParsing="false" onAction="#onEnd" prefHeight="25.0" prefWidth="36.0" styleClass="Button" text="End" />
+          <Canvas id="spaceBoard" height="493.0" styleClass="Canvas" width="900.0" />
+      </children>
+      <effect>
+         <Blend />
+      </effect>
+   </Pane>
+   <Button id="resetBtn" layoutX="148.0" layoutY="25.0" mnemonicParsing="false" onAction="#onReset" prefHeight="45.0" prefWidth="99.0" styleClass="Button" text="Reset" />
 
     <padding>
         <Insets top="20.0" />

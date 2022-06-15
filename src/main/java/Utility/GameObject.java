@@ -1,6 +1,8 @@
 package Utility;
 
 import Objects.Space;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,12 +18,20 @@ public abstract class GameObject {
     protected double x;
     protected double y;
     protected double radius;
+    public Color color;
 
     public GameObject(double x, double y, double radius){
         this.x = x;
         this.y = y;
         this.radius = radius;
         instanceID = generateID();
+
+        Random rand = new Random();
+        int r = (int)((rand.nextFloat()*0.8F + 0.2F)*255);
+        int g = (int)((rand.nextFloat()*0.8F + 0.2F)*255);
+        int b = (int)((rand.nextFloat()*0.8F + 0.2F)*255);
+
+        this.color = Color.rgb(r, g, b, 1);
     }
 
     private int generateID(){
@@ -34,7 +44,7 @@ public abstract class GameObject {
         return newID;
     }
 
-    public void stepEvent(){ }
+    public synchronized void stepEvent(){ }
 
     public double pointDistance(double _x, double _y){
         return Math.sqrt(Math.pow(x-_x, 2)+Math.pow(y-_y, 2));
@@ -50,4 +60,6 @@ public abstract class GameObject {
         y = -300;
         radius = 0;
     }
+
+    public abstract Paint getColor();
 }

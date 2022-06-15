@@ -1,8 +1,6 @@
 package Utility.UI;
 
-import Objects.Planet;
 import Objects.Space;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.apache.logging.log4j.LogManager;
@@ -20,13 +18,26 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    public void onPause(ActionEvent event){
+    public void onPause(){
         Space.togglePause();
+
         logger.info("Pause toggled. Now Paused: {}", Space.pause);
     }
     @FXML
-    public void onEnd(ActionEvent event){
+    public void onEnd(){
         Space.endSimulation();
         logger.info("Simulation has ended.");
+    }
+    @FXML
+    public void onLanguageChange(){
+
+
+
+    }
+
+    @FXML
+    public void onReset(){
+        Space.resetSimulation();
+        logger.info("Simulation reset.");
     }
 }

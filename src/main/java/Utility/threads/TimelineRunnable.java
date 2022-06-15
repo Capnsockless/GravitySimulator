@@ -3,14 +3,9 @@ package Utility.threads;
 import Objects.Space;
 import Utility.Exceptions.GraphicsContextMissingException;
 
-import javafx.scene.canvas.GraphicsContext;
+public class TimelineRunnable implements Runnable{
 
-public class StepRunnable implements Runnable{
-    GraphicsContext gc;
-
-    public StepRunnable(GraphicsContext gc) {
-        this.gc = gc;
-    }
+    public TimelineRunnable() { }
 
     @Override
     public void run(){
