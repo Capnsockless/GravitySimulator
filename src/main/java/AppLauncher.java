@@ -2,13 +2,10 @@ import Objects.Planet;
 import Objects.Space;
 import Utility.Exceptions.GraphicsContextMissingException;
 import Utility.I18N;
-import Utility.UI.AppController;
 import Utility.threads.TimelineRunnable;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -17,7 +14,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import lombok.SneakyThrows;
@@ -31,9 +27,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import static java.lang.Thread.MAX_PRIORITY;
 
 public class AppLauncher extends Application {
-
-    static StackPane root = new StackPane();
-    static Scene scene = new Scene(root, 1366, 800);
     private static final org.apache.logging.log4j.core.Logger logger = (Logger) LogManager.getLogger(AppLauncher.class);
     static GraphicsContext gc;
 
@@ -48,8 +41,6 @@ public class AppLauncher extends Application {
         gc = canvas.getGraphicsContext2D();
         Space.setGc(gc);
 
-        AppController controller = fxmlLoader.getController();
-
         primaryStage.titleProperty().bind(I18N.createStringBinding("title"));
         primaryStage.setScene(scene);
 
@@ -62,17 +53,14 @@ public class AppLauncher extends Application {
         Button trailBtn = (Button) scene.lookup("#trailBtn");
         trailBtn.textProperty().bind(I18N.createStringBinding("trail"));
 
-        ChoiceBox langSelect = (ChoiceBox) scene.lookup("#langSelect");
+        ChoiceBox<String> langSelect = (ChoiceBox) scene.lookup("#langSelect");
         langSelect.getItems().addAll("English", "ქართული");
         langSelect.setValue("English");
-        langSelect.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-                Object newLang = langSelect.getItems().get((Integer) number2);
-                if (newLang == "English") I18N.setLocale(Locale.ENGLISH);
-                else I18N.setLocale(new Locale("KA"));
-                System.out.println();
-            }
+        langSelect.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> {
+            Object newLang = langSelect.getItems().get((Integer) number2);
+            if (newLang == "English") I18N.setLocale(Locale.ENGLISH);
+            else I18N.setLocale(new Locale("KA"));
+            System.out.println();
         });
 
         AtomicReference<Double> planetRadius = new AtomicReference<>((double) 5);
@@ -81,9 +69,7 @@ public class AppLauncher extends Application {
         sizeSlider.setMin(1.0D);
         sizeSlider.setMax(20.0D);
         sizeSlider.setValue(5.0D);
-        sizeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                    planetRadius.set(newValue.doubleValue());
-                });
+        sizeSlider.valueProperty().addListener((observable, oldValue, newValue) -> planetRadius.set(newValue.doubleValue()));
 
         canvas.setOnMouseClicked(e -> Space.addInstance(new Planet(e.getX(), e.getY(), planetRadius.get())));
 
