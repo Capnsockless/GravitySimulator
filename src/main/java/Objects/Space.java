@@ -14,6 +14,7 @@ public class Space {
     static public boolean CollisionsActive = true;
     static public boolean pause = false;
     static public boolean end = false;
+    static public boolean trail = false;
     static private int FPS = 30;
     public static GraphicsContext gc;
     static private boolean gcExists = false;
@@ -27,7 +28,7 @@ public class Space {
         //System.out.println("Space step ran")
 
         //Clear canvas
-        gc.clearRect(0, 0, 1000, 1000);
+        if (!trail) gc.clearRect(0, 0, 1400, 880);
 
         for (int i=0; i < Instances.size(); i++) {
             GameObject obj = Instances.get(i);
@@ -76,6 +77,8 @@ public class Space {
     }
 
     static public void togglePause(){ pause = !pause; }
+
+    static public void toggleTrail(){ trail = !trail; }
 
     static public void endSimulation(){ end = true; }
 

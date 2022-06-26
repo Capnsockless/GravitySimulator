@@ -25,4 +25,5 @@
 
 .ChoiceBox{
     -fx-background-color: #7639BE;
+    -fx-text-fill: White;
 }

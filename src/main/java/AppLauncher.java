@@ -1,5 +1,6 @@
 import Objects.Planet;
 import Objects.Space;
+import Utility.Exceptions.GraphicsContextMissingException;
 import Utility.I18N;
 import Utility.UI.AppController;
 import Utility.threads.TimelineRunnable;
@@ -58,14 +59,16 @@ public class AppLauncher extends Application {
         resetBtn.textProperty().bind(I18N.createStringBinding("reset"));
         Button endBtn = (Button) scene.lookup("#endBtn");
         endBtn.textProperty().bind(I18N.createStringBinding("end"));
+        Button trailBtn = (Button) scene.lookup("#trailBtn");
+        trailBtn.textProperty().bind(I18N.createStringBinding("trail"));
 
-        ChoiceBox<String> langSelect = (ChoiceBox) scene.lookup("#langSelect");
+        ChoiceBox langSelect = (ChoiceBox) scene.lookup("#langSelect");
         langSelect.getItems().addAll("English", "ქართული");
         langSelect.setValue("English");
         langSelect.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-                String newLang = langSelect.getItems().get((Integer) number2);
+                Object newLang = langSelect.getItems().get((Integer) number2);
                 if (newLang == "English") I18N.setLocale(Locale.ENGLISH);
                 else I18N.setLocale(new Locale("KA"));
                 System.out.println();
@@ -99,20 +102,20 @@ public class AppLauncher extends Application {
 
     @SneakyThrows
     private void run(Thread thr){
+        /*
         if (!Space.end){
             thr.run();
             thr.join();
         }
+        */
         //Threadless version
-        /*
-        if (!Space.end){
+        if (!Space.end) {
             try {
                 Space.runStep();
             } catch (GraphicsContextMissingException e) {
                 e.printStackTrace();
             }
         }
-        */
     }
 
     public static void main(String[] args){

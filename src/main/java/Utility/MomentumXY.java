@@ -26,6 +26,9 @@ public class MomentumXY {
 
     public void SumMomentum(MomentumXY mXY){ this.x += mXY.getX(); this.y += mXY.getY();}
 
+    public void multMomentumX(double mult){ this.x *= mult; }
+    public void multMomentumY(double mult){ this.y *= mult; }
+
     @Override
     public String toString() {
         return "MomentumXY{" +

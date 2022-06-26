@@ -29,15 +29,19 @@ public class AppController implements Initializable {
         logger.info("Simulation has ended.");
     }
     @FXML
-    public void onLanguageChange(){
+    public void onTrail(){
+        Space.toggleTrail();
 
-
-
+        logger.info("Trailing toggled. Now Trail: {}", Space.trail);
     }
-
     @FXML
     public void onReset(){
         Space.resetSimulation();
         logger.info("Simulation reset.");
     }
+    @FXML
+    public void onLanguageChange(){
+
+    }
+
 }

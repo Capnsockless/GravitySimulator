@@ -50,6 +50,10 @@ public class Planet extends GameObject {
     public synchronized void stepEvent() {
         super.stepEvent();
 
+        //Bounce off walls
+        if (x < 0 || x > 1385.0-radius) currMomentum.multMomentumX(-1);
+        if (y < 0 || y > 797.0-radius) currMomentum.multMomentumY(-1);
+
         x += currMomentum.getX();
         y += currMomentum.getY();
 
